@@ -5,7 +5,7 @@ import numpy as np
 class Polygon(Entity):
     transformationMode = False
 
-    def __init__(self, points, color=color.white, world_origin=(0, 0)):
+    def __init__(self, points, color=color.white, world_origin=(0, 0), parent=None):
         super().__init__()
         self.points = points
         self.world_origin = world_origin
@@ -159,7 +159,7 @@ class Polygon(Entity):
 
         
     def update_figure(self):
-        self.disable()
+        self.model.clear()
         positions = [vertex.position for vertex in self.points] + [self.points[0].position]
         self.model = Mesh(vertices=positions,  mode='line', thickness=3)
         self.collider.enabled = False
